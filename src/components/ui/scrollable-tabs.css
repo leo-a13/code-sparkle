@@ -1,0 +1,170 @@
+
+.scrollable-tabs-list {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* hide scrollbar
+     I prefer keeping the previous rules since they target only the element
+     and don't interfere with global layout. */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  padding-bottom: 4px; /* Adds space for the scrollbar */
+  position: relative;
+}
+
+.scrollable-tabs-list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.tabs-scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.tabs-scroll-button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabs-scroll-button:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.tabs-scroll-prev {
+  left: 0;
+}
+
+.tabs-scroll-next {
+  right: 0;
+}
+
+.tabs-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Card scroll container styles */
+.card-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* use a thin scrollbar instead of hiding it so users know content can scroll */
+  /* default color set via scrollbar-color below for Firefox */
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 100%;
+  /* make the scrollbar visible but subtle */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+}
+
+/* webkit browsers: show a small, low‑contrast thumb */
+.card-scroll-container::-webkit-scrollbar {
+  height: 4px;
+}
+.card-scroll-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 2px;
+}
+.card-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card-scroll-content {
+  display: flex;
+  gap: 12px;
+  padding: 4px 0;
+  width: max-content;
+}
+
+/* Table scroll container styles */
+.table-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* hide the scrollbar on tables too */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  max-width: 100%;
+  position: relative;
+}
+
+.table-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .scrollable-tabs-list .tabs-trigger {
+    min-width: 40px;
+    padding-left: 8px;
+    padding-right: 8px;
+    justify-content: center;
+  }
+  
+  .tabs-scroll-button {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .tabs-scroll-button svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  /* Adjust card display on mobile */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  
+  .card-scroll-content {
+    width: max-content;
+    min-width: 100%;
+  }
+  
+  .card-scroll-content > * {
+    min-width: 240px;
+    max-width: 85vw;
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  
+  .card-scroll-content > * {
+    min-width: 200px;
+    max-width: 90vw;
+  }
+  
+  .tabs-scroll-button {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .tabs-scroll-button svg {
+    width: 12px;
+    height: 12px;
+  }
+}

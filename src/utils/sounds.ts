@@ -1,3 +1,4 @@
+// Milestone sound effects using Web Audio API
 const audioCtx = () => new (window.AudioContext || (window as any).webkitAudioContext)();
 
 export const playMilestoneSound = (type: 'success' | 'levelup' | 'streak' | 'reward' = 'success') => {
@@ -39,8 +40,19 @@ export const playMilestoneSound = (type: 'success' | 'levelup' | 'streak' | 'rew
         gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
         osc.start(now);
         osc.stop(now + 0.4);
+        // Add second tone
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(784, now + 0.25);
+        gain2.gain.setValueAtTime(0.1, now + 0.25);
+        gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+        osc2.start(now + 0.25);
+        osc2.stop(now + 0.5);
         break;
-      default:
+      default: // success
         osc.type = 'sine';
         osc.frequency.setValueAtTime(523, now);
         osc.frequency.setValueAtTime(659, now + 0.12);
@@ -48,7 +60,5 @@ export const playMilestoneSound = (type: 'success' | 'levelup' | 'streak' | 'rew
         osc.start(now);
         osc.stop(now + 0.3);
     }
-  } catch {
-    // silently fail if audio not available
-  }
+  } catch {}
 };

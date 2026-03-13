@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Flame, Star, Calendar, TrendingUp } from 'lucide-react';
+import { Flame, Star, AlertCircle, Calendar, TrendingUp } from 'lucide-react';
 import { getLS, LS_KEYS, MoodEntry, MealPlan, CalorieEntry } from '@/utils/localStorage';
+import wavingLady from '@/assets/waving-lady.png';
 import { Card } from '@/components/ui/card';
 
 const DashboardGreeting: React.FC = () => {
@@ -23,67 +24,77 @@ const DashboardGreeting: React.FC = () => {
   else if (hour >= 17 && hour < 21) { greeting = 'Good Evening'; emoji = '🌿'; }
   else if (hour >= 21 || hour < 5) { greeting = 'Good Night'; emoji = '🌙'; }
 
-  const moodEmojis: Record<string, string> = { great: '😄', good: '😊', neutral: '😐', bad: '😔', terrible: '😢' };
+  const moodEmojis: Record<string, string> = { great: '😄', good: '😊', neutral: '😐', bad: '😔', terrible: '😢', delicious: '😋', satisfied: '😊', unsatisfied: '😞' };
   const lastMoodEmoji = lastMood ? (moodEmojis[lastMood.mood] || '😐') : null;
 
+  // Reminders
   const reminders: string[] = [];
   if (todayCalories.length === 0) reminders.push('📊 Track your calories today!');
   if (mealPlans.length === 0) reminders.push('📅 Create a meal plan to stay on track!');
+  if (streak === 0) reminders.push('🔥 Start your streak — check in daily!');
+  const streakDate = getLS<string>(LS_KEYS.STREAK_DATE, '');
+  if (streakDate !== today && streak > 0) reminders.push('🔥 Don\'t break your streak — check in now!');
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Card className="p-6 bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 border-primary/20">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground">
-              {emoji} {greeting}, {firstName}!
-            </h2>
-            <p className="text-muted-foreground mt-1">
-              {lastMoodEmoji && `Feeling ${lastMoodEmoji} • `}
-              Ready to make today count?
-            </p>
-          </div>
-
+    <div className="space-y-3 mb-6">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-xl p-5"
+      >
+        <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 bg-card rounded-lg px-3 py-2 shadow-sm">
-              <Star className="text-secondary" size={18} />
-              <div>
-                <p className="text-xs text-muted-foreground">Points</p>
-                <p className="font-bold text-foreground">{points}</p>
-              </div>
+            <motion.img
+              src={wavingLady}
+              alt="Greeting"
+              className="h-16 w-16 sm:h-20 sm:w-20 object-contain drop-shadow-lg"
+              animate={{ rotate: [0, -8, 8, -8, 0] }}
+              transition={{ repeat: Infinity, repeatDelay: 2, duration: 1.2, ease: "easeInOut" }}
+            />
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+                {greeting}, {firstName}! <span className="text-2xl">{emoji}</span>
+              </h2>
+              <p className="text-primary-foreground/80 text-sm mt-0.5">Here's your health snapshot for today</p>
             </div>
-            <div className="flex items-center gap-2 bg-card rounded-lg px-3 py-2 shadow-sm">
-              <Flame className="text-destructive" size={18} />
-              <div>
-                <p className="text-xs text-muted-foreground">Streak</p>
-                <p className="font-bold text-foreground">{streak} days</p>
-              </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1.5 text-center">
+              <Flame className="h-5 w-5 text-orange-300" />
+              <span className="text-xl font-bold">{streak}</span>
+              <span className="text-xs opacity-80 hidden sm:block">Day Streak</span>
             </div>
-            <div className="flex items-center gap-2 bg-card rounded-lg px-3 py-2 shadow-sm">
-              <Calendar className="text-primary" size={18} />
-              <div>
-                <p className="text-xs text-muted-foreground">Plans</p>
-                <p className="font-bold text-foreground">{mealPlans.length}</p>
-              </div>
+            <div className="flex items-center gap-1.5 text-center">
+              <Star className="h-5 w-5 text-yellow-300 fill-yellow-300" />
+              <span className="text-xl font-bold">{points}</span>
+              <span className="text-xs opacity-80 hidden sm:block">Points</span>
             </div>
+            {lastMoodEmoji && (
+              <div className="flex items-center gap-1.5 text-center">
+                <span className="text-2xl">{lastMoodEmoji}</span>
+                <span className="text-xs opacity-80 hidden sm:block">Last Mood</span>
+              </div>
+            )}
           </div>
         </div>
+      </motion.div>
 
-        {reminders.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {reminders.map((r, i) => (
-              <span key={i} className="text-xs bg-secondary/20 text-secondary-foreground px-3 py-1 rounded-full">
-                {r}
-              </span>
-            ))}
-          </div>
-        )}
-      </Card>
-    </motion.div>
+      {reminders.length > 0 && (
+        <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+          <Card className="p-3 border-amber-200 dark:border-amber-800/30 bg-amber-50/50 dark:bg-amber-950/20">
+            <div className="flex items-start gap-2">
+              <AlertCircle className="h-4 w-4 text-amber-500 mt-0.5 flex-shrink-0" />
+              <div className="space-y-1">
+                <p className="text-xs font-semibold text-amber-700 dark:text-amber-400">Daily Reminders</p>
+                {reminders.map((r, i) => (
+                  <p key={i} className="text-xs text-amber-600 dark:text-amber-300">{r}</p>
+                ))}
+              </div>
+            </div>
+          </Card>
+        </motion.div>
+      )}
+    </div>
   );
 };
 

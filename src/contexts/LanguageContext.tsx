@@ -15,7 +15,9 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage) setLanguage(savedLanguage);
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
   }, []);
 
   useEffect(() => {

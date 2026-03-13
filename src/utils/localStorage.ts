@@ -1,3 +1,4 @@
+
 export function getLS<T>(key: string, fallback: T): T {
   try {
     const v = localStorage.getItem(key);
@@ -16,6 +17,7 @@ export function updateLS<T>(key: string, updater: (prev: T) => T, fallback: T): 
   return next;
 }
 
+// Keys
 export const LS_KEYS = {
   PROFILE: 'th_profile',
   SETTINGS: 'th_settings',
@@ -47,8 +49,8 @@ export interface ProfileData {
 
 export interface MealPlanItem {
   id: string; name: string; calories: number;
-  time?: string;
-  date?: string;
+  time?: string; // Make time optional for backward compatibility
+  date?: string; // Add date field to track which specific date this meal is for
 }
 
 export interface MealPlanDay {
@@ -97,6 +99,10 @@ export interface Challenge {
   completed: boolean;
 }
 
+export interface Notification {
+  id: string; date: string; title: string; message: string; read: boolean;
+}
+
 export interface FavoriteMeal {
   id: string; name: string; calories: number; protein: number;
   carbs: number; fats: number; imageUrl?: string; category?: string;
@@ -115,3 +121,5 @@ export function createEmptyWeek(): Record<string, MealPlanDay> {
   });
   return days;
 }
+
+export { DAYS_OF_WEEK };

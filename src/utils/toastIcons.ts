@@ -1,3 +1,4 @@
+// Use simple emoji strings instead of React elements for toast icons
 export const TOAST_ICONS = {
   success: '✅',
   error: '❌',
@@ -17,5 +18,5 @@ export const TOAST_ICONS = {
   milestone: '🎯',
   completed: '🏆',
   deleted: '🗑️',
-  reset: '🔄',
+  reset: '🔄'
 } as const;
