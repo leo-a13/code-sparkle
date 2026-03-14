@@ -5,7 +5,7 @@ export interface Notification {
   id: string;
   title: string;
   message: string;
-  type: 'water' | 'achievement' | 'meal' | 'reminder' | 'info';
+  type: 'water' | 'achievement' | 'meal' | 'reminder' | 'info' | 'success';
   isRead: boolean;
   timestamp: Date;
   actionUrl?: string;

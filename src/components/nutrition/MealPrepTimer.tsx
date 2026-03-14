@@ -57,13 +57,15 @@ const MealPrepTimer: React.FC = () => {
   const t = translations[language as keyof typeof translations] || translations.en;
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    let interval: number | null = null;
     
     if (isActive && (minutes > 0 || seconds > 0)) {
-      interval = setInterval(() => {
+      interval = window.setInterval(() => {
         if (seconds === 0) {
           if (minutes === 0) {
-            clearInterval(interval);
+            if (interval !== null) {
+              window.clearInterval(interval);
+            }
             setIsActive(false);
             setCompleted(true);
             toast.success(t.completed);
@@ -82,11 +84,11 @@ const MealPrepTimer: React.FC = () => {
         }
       }, 1000);
     } else if (!isActive && seconds !== 0) {
-      if (interval) clearInterval(interval);
+      if (interval !== null) window.clearInterval(interval);
     }
     
     return () => {
-      if (interval) clearInterval(interval);
+      if (interval !== null) window.clearInterval(interval);
     };
   }, [isActive, minutes, seconds, t.completed]);
 

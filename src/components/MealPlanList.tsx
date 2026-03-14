@@ -287,7 +287,7 @@ export function MealPlanList() {
               ← {t.previousWeek}
             </Button>
             <Badge variant="outline" className="px-3 py-1">
-              <Calendar className="h-3 w-3 mr-1" />
+              <Calendar className="h-3 w-3 mr-1 text-blue-700 fill-blue-600" />
               {weekDates[0].shortDate} - {weekDates[6].shortDate}
             </Badge>
             <Button variant="outline" size="sm" onClick={() => navigateWeek('next')}>

@@ -20,7 +20,7 @@ const queryClient = new QueryClient();
 // Pages
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 const MealPlanningPage = lazy(() => import("./pages/MealPlanningPage"));
-const MealPlanView = lazy(() => import("./pages/MealPlanView"));
+//const MealPlanView = lazy(() => import("./pages/MealPlanView"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
 const ProgressPage = lazy(() => import("./pages/ProgressPage"));
 const SettingsPage = lazy(() => import("./pages/SettingsPage"));
@@ -38,7 +38,7 @@ const PointsTransactionPage = lazy(
 );
 const ChallengesPage = lazy(() => import("./pages/ChallengesPage"));
 const LevelBenefitsPage = lazy(() => import("./pages/LevelBenefitsPage"));
-const MealPlanPage = lazy(() => import("./pages/MealPlanPage"));
+//const MealPlanPage = lazy(() => import("./pages/MealPlanPage"));
 const DailyJournalPage = lazy(() => import("./pages/DailyJournalPage"));
 const HowToUsePage = lazy(() => import("./pages/HowToUsePage"));
 const CookingVideosPage = lazy(() => import("./pages/CookingVideosPage"));
@@ -117,7 +117,7 @@ function RouteTransitionWrapper() {
         <Route path="/welcome" element={wrap(<WelcomePage />)} />
         <Route path="/profile" element={wrap(<ProfilePage />)} />
         <Route path="/meal-planning" element={wrap(<MealPlanningPage />)} />
-        <Route path="/meal-plan-id" element={wrap(<MealPlanView />)} />
+        {/* <Route path="/meal-plan-id" element={wrap(<MealPlanView />)} /> */}
         <Route path="/dashboard" element={wrap(<DashboardPage />)} />
         <Route path="/progress" element={wrap(<ProgressPage />)} />
         <Route path="/settings" element={wrap(<SettingsPage />)} />
@@ -126,7 +126,7 @@ function RouteTransitionWrapper() {
         <Route path="/favorites" element={wrap(<Favorites />)} />
         <Route path="/games" element={wrap(<NutritionGamificationSystem />)} />
         <Route path="/points" element={wrap(<PointsTransactionPage />)} />
-        <Route path="/meal-plan" element={wrap(<MealPlanPage />)} />
+        {/* <Route path="/meal-plan" element={wrap(<MealPlanPage />)} /> */}
         <Route path="/challenges" element={wrap(<ChallengesPage />)} />
         <Route path="/benefits" element={wrap(<LevelBenefitsPage />)} />
         <Route path="/journal" element={wrap(<DailyJournalPage />)} />

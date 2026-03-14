@@ -31,7 +31,7 @@ const MealPlanningPage = () => {
       <div className="container mx-auto px-4 py-6">
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-6">
           <h1 className="text-2xl sm:text-3xl font-bold mb-2 flex items-center justify-center">
-            <ChefHat className="h-7 w-7 mr-2 text-primary" />{t.title}
+            <ChefHat className="h-7 w-7 mr-2 text-primary fill-green-700" />{t.title}
           </h1>
           <p className="text-muted-foreground text-sm">{t.subtitle}</p>
         </motion.div>

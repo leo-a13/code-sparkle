@@ -32,7 +32,7 @@ const MealPrepFeedback = () => {
   const [timeLeft, setTimeLeft] = useState(0)
   const [showCelebration, setShowCelebration] = useState(false)
   const [celebrationMessage, setCelebrationMessage] = useState("")
-  const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const timerRef = useRef<number | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const confettiCanvasRef = useRef<HTMLCanvasElement>(null)
   const { language } = useLanguage()
@@ -69,8 +69,8 @@ const MealPrepFeedback = () => {
 
   useEffect(() => {
     return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current)
+      if (timerRef.current !== null) {
+        window.clearInterval(timerRef.current)
       }
       if (audioRef.current) {
         audioRef.current.pause()
@@ -93,10 +93,12 @@ const MealPrepFeedback = () => {
       playSound(step.sound)
     }
 
-    timerRef.current = setInterval(() => {
+    timerRef.current = window.setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
-          clearInterval(timerRef.current!)
+          if (timerRef.current !== null) {
+            window.clearInterval(timerRef.current)
+          }
           completeStep(step.id)
           return 0
         }

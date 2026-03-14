@@ -86,7 +86,9 @@ const pulseVariants = {
   }
 }
 
-interface AlertProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> {
+type AlertProps = Omit<React.ComponentPropsWithoutRef<typeof motion.div>, 'children'> & {
+  children?: React.ReactNode;
+} & VariantProps<typeof alertVariants> & {
   dismissible?: boolean;
   onDismiss?: () => void;
   icon?: React.ReactNode;
@@ -221,9 +223,13 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 )
 Alert.displayName = "Alert"
 
+type AlertTitleProps = Omit<React.ComponentPropsWithoutRef<typeof motion.h5>, 'children'> & {
+  children?: React.ReactNode;
+}
+
 const AlertTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
+  HTMLHeadingElement,
+  AlertTitleProps
 >(({ className, children, ...props }, ref) => (
   <motion.h5
     ref={ref}
@@ -242,9 +248,13 @@ const AlertTitle = React.forwardRef<
 ))
 AlertTitle.displayName = "AlertTitle"
 
+type AlertDescriptionProps = Omit<React.ComponentPropsWithoutRef<typeof motion.div>, 'children'> & {
+  children?: React.ReactNode;
+}
+
 const AlertDescription = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
+  AlertDescriptionProps
 >(({ className, children, ...props }, ref) => (
   <motion.div
     ref={ref}
