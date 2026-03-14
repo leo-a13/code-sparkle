@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
+import { playNotificationSound } from "@/utils/sounds";
 
 export interface Notification {
   id: string;
