@@ -164,6 +164,7 @@ const ChallengesPage: React.FC = () => {
       return saved.map((c: any) => ({
         id: c.id || crypto.randomUUID(),
         name: c.name || '',
+        types: c.types || [c.category || 'nutrition'],
         category: c.category || 'nutrition',
         color: c.color || 'green',
         description: c.description || '',
