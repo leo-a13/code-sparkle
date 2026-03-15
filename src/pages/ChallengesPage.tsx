@@ -288,7 +288,8 @@ const ChallengesPage: React.FC = () => {
   const addChallenge = (incoming: LSChallenge) => {
     const challenge: Challenge = {
       ...incoming,
-      category: 'nutrition',
+      types: incoming.types || ['nutrition'],
+      category: 'nutrition' as ChallengeCategory,
       color: 'green',
       description: incoming.name,
       streak: 0,

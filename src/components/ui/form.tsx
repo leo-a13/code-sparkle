@@ -531,7 +531,7 @@ const FormContainer = React.forwardRef<
         stiffness: 300
       }}
       className={baseClasses}
-      {...props}
+      {...(props as MotionProps)}
     >
       {/* Animated decorative elements */}
       <motion.div
