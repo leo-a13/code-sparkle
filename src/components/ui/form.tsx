@@ -427,7 +427,7 @@ const FormDescription = React.forwardRef<
       animate="animate"
       exit="exit"
       className={baseClasses}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.p>
