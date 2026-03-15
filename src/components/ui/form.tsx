@@ -474,7 +474,7 @@ const FormMessage = React.forwardRef<
         animate="animate"
         exit="exit"
         className={baseClasses}
-        {...props}
+        {...(props as any)}
       >
         <motion.span
           animate={{
