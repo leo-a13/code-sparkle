@@ -100,6 +100,7 @@ const PRESET_CHALLENGES: Omit<Challenge, 'id' | 'startDate' | 'progress' | 'comp
     category: "nutrition",
     color: "green",
     description: "Eat 5 servings of fruits and vegetables daily",
+    types: ["nutrition"],
     duration: 7,
     difficulty: 1,
     target: 35
@@ -109,6 +110,7 @@ const PRESET_CHALLENGES: Omit<Challenge, 'id' | 'startDate' | 'progress' | 'comp
     category: "hydration",
     color: "blue",
     description: "Drink 8 glasses of water daily",
+    types: ["hydration"],
     duration: 7,
     difficulty: 2,
     target: 56
@@ -118,6 +120,7 @@ const PRESET_CHALLENGES: Omit<Challenge, 'id' | 'startDate' | 'progress' | 'comp
     category: "fitness",
     color: "purple",
     description: "Walk 10,000 steps daily",
+    types: ["fitness"],
     duration: 30,
     difficulty: 3,
     target: 30
@@ -127,6 +130,7 @@ const PRESET_CHALLENGES: Omit<Challenge, 'id' | 'startDate' | 'progress' | 'comp
     category: "wellness",
     color: "indigo",
     description: "Get 7-8 hours of sleep",
+    types: ["wellness"],
     duration: 14,
     difficulty: 2,
     target: 14
@@ -136,6 +140,7 @@ const PRESET_CHALLENGES: Omit<Challenge, 'id' | 'startDate' | 'progress' | 'comp
     category: "mindfulness",
     color: "violet",
     description: "Meditate for 10 minutes daily",
+    types: ["mindfulness"],
     duration: 21,
     difficulty: 3,
     target: 21
@@ -159,6 +164,7 @@ const ChallengesPage: React.FC = () => {
       return saved.map((c: any) => ({
         id: c.id || crypto.randomUUID(),
         name: c.name || '',
+        types: c.types || [c.category || 'nutrition'],
         category: c.category || 'nutrition',
         color: c.color || 'green',
         description: c.description || '',
@@ -282,7 +288,8 @@ const ChallengesPage: React.FC = () => {
   const addChallenge = (incoming: LSChallenge) => {
     const challenge: Challenge = {
       ...incoming,
-      category: 'nutrition',
+      types: incoming.types || ['nutrition'],
+      category: 'nutrition' as ChallengeCategory,
       color: 'green',
       description: incoming.name,
       streak: 0,

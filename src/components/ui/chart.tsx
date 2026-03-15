@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, type MotionProps } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -165,7 +165,7 @@ const ChartContainer = React.forwardRef<
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         className={baseClasses}
-        {...props}
+        {...(props as any)}
       >
         <ChartStyle id={chartId} config={config} />
         

@@ -279,7 +279,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
 
   const applyBlock = (blockTag: 'H1' | 'H2' | 'BLOCKQUOTE') => {
     editorRef.current?.focus();
-    let target = blockTag;
+    let target: string = blockTag;
     if (blockTag === 'BLOCKQUOTE' && activeFormats.blockquote) {
       target = 'P';
     } else if (blockTag === 'H1' && activeFormats.heading1) {
