@@ -165,7 +165,7 @@ const ChartContainer = React.forwardRef<
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         className={baseClasses}
-        {...(props as MotionProps)}
+        {...(props as any)}
       >
         <ChartStyle id={chartId} config={config} />
         
