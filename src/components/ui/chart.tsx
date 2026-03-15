@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, type MotionProps } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
