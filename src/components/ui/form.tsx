@@ -207,7 +207,7 @@ const FormItem = React.forwardRef<
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         className={baseClasses}
-        {...(props as MotionProps)}
+        {...(props as any)}
       >
         {/* Animated gradient background */}
         <motion.div
