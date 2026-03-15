@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, type MotionProps } from "framer-motion"
 import {
   Controller,
   ControllerProps,
