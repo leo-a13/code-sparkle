@@ -115,10 +115,10 @@ const ChallengesPage: React.FC = () => {
   const [challenges, setChallenges] = useState<Challenge[]>(() => {
     try {
       const saved = getLS(LS_KEYS.CHALLENGES, []);
-      // Ensure we have clean data without React elements
       return saved.map((c: any) => ({
         id: c.id || crypto.randomUUID(),
         name: c.name || '',
+        types: Array.isArray(c.types) ? c.types : [],
         category: c.category || 'nutrition',
         color: c.color || 'green',
         description: c.description || '',
