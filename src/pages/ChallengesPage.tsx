@@ -95,51 +95,11 @@ const getCategoryIcon = (category: ChallengeCategory, color: string) => {
 
 // PRESET CHALLENGES - WITHOUT storing React elements
 const PRESET_CHALLENGES: Omit<Challenge, 'id' | 'startDate' | 'progress' | 'completed' | 'streak' | 'lastUpdated' | 'dailyLogs'>[] = [
-  {
-    name: "5-a-Day",
-    category: "nutrition",
-    color: "green",
-    description: "Eat 5 servings of fruits and vegetables daily",
-    duration: 7,
-    difficulty: 1,
-    target: 35
-  },
-  {
-    name: "Hydration Hero",
-    category: "hydration",
-    color: "blue",
-    description: "Drink 8 glasses of water daily",
-    duration: 7,
-    difficulty: 2,
-    target: 56
-  },
-  {
-    name: "10K Steps",
-    category: "fitness",
-    color: "purple",
-    description: "Walk 10,000 steps daily",
-    duration: 30,
-    difficulty: 3,
-    target: 30
-  },
-  {
-    name: "Sleep Champion",
-    category: "wellness",
-    color: "indigo",
-    description: "Get 7-8 hours of sleep",
-    duration: 14,
-    difficulty: 2,
-    target: 14
-  },
-  {
-    name: "Meditation",
-    category: "mindfulness",
-    color: "violet",
-    description: "Meditate for 10 minutes daily",
-    duration: 21,
-    difficulty: 3,
-    target: 21
-  }
+  { name: "5-a-Day", category: "nutrition", color: "green", description: "Eat 5 servings of fruits and vegetables daily", duration: 7, difficulty: 1, target: 35, types: ['nutrition'] },
+  { name: "Hydration Hero", category: "hydration", color: "blue", description: "Drink 8 glasses of water daily", duration: 7, difficulty: 2, target: 56, types: ['hydration'] },
+  { name: "10K Steps", category: "fitness", color: "purple", description: "Walk 10,000 steps daily", duration: 30, difficulty: 3, target: 30, types: ['fitness'] },
+  { name: "Sleep Champion", category: "wellness", color: "indigo", description: "Get 7-8 hours of sleep", duration: 14, difficulty: 2, target: 14, types: ['wellness'] },
+  { name: "Meditation", category: "mindfulness", color: "violet", description: "Meditate for 10 minutes daily", duration: 21, difficulty: 3, target: 21, types: ['mindfulness'] },
 ];
 
 const DifficultyStars = ({ difficulty }: { difficulty: number }) => (
