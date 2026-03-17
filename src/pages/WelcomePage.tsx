@@ -63,6 +63,7 @@ const WelcomePage = () => {
   ];
 
   return (
+    // new welcome page
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-primary/5 via-background to-background">
       {/* Loading Overlay */}
       {isLoading && (
