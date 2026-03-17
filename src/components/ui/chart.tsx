@@ -155,15 +155,9 @@ const ChartContainer = React.forwardRef<
 
   return (
     <ChartContext.Provider value={{ config }}>
-      <motion.div
+      <div
         data-chart={chartId}
         ref={ref}
-        variants={chartContainerVariants}
-        initial="initial"
-        animate="animate"
-        whileHover="hover"
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
         className={baseClasses}
         {...props}
       >
