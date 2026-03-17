@@ -99,123 +99,29 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     if (!isVisible) return null;
 
     return (
-      <AnimatePresence mode="wait">
-        <motion.div
-          ref={ref}
-          role="alert"
-          variants={alertAnimationVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          whileHover="hover"
-          className={cn(
-            alertVariants({ variant }),
-            "relative group",
-            className
+      <div
+        ref={ref}
+        role="alert"
+        className={cn(
+          alertVariants({ variant }),
+          "relative group",
+          className
+        )}
+        {...props}
+      >
+        <div className="relative z-10">
+          {icon && <div className="absolute left-4 top-4">{icon}</div>}
+          <div className={cn(icon && "pl-7")}>{children}</div>
+          {dismissible && (
+            <button
+              className="absolute top-2 right-2 p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+              onClick={() => { setIsVisible(false); onDismiss?.(); }}
+            >
+              <svg className="w-4 h-4" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
           )}
-          {...props}
-        >
-          {/* Animated gradient background */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-            variants={shimmerVariants}
-            initial="initial"
-            animate="animate"
-          />
-
-          {/* Decorative corner accents */}
-          <motion.div
-            className="absolute top-0 left-0 w-16 h-16 bg-gradient-to-br from-primary/20 to-transparent rounded-br-3xl"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-          />
-          <motion.div
-            className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-primary/20 to-transparent rounded-tl-3xl"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-          />
-
-          {/* Content wrapper */}
-          <motion.div
-            className="relative z-10"
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            {/* Icon with pulse animation */}
-            {icon && (
-              <motion.div
-                className="absolute left-4 top-4"
-                variants={pulseVariants}
-                initial="initial"
-                animate="animate"
-              >
-                {icon}
-              </motion.div>
-            )}
-
-            {/* Children */}
-            <div className={cn(icon && "pl-7")}>
-              {children}
-            </div>
-
-            {/* Dismiss button */}
-            {dismissible && (
-              <motion.button
-                className="absolute top-2 right-2 p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                onClick={() => {
-                  setIsVisible(false);
-                  onDismiss?.();
-                }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </motion.button>
-            )}
-          </motion.div>
-
-          {/* Border glow effect on hover */}
-          <motion.div
-            className="absolute inset-0 rounded-lg border-2 border-transparent"
-            whileHover={{
-              borderColor: variant === 'destructive' 
-                ? 'rgba(239, 68, 68, 0.3)' 
-                : variant === 'success'
-                ? 'rgba(34, 197, 94, 0.3)'
-                : variant === 'warning'
-                ? 'rgba(234, 179, 8, 0.3)'
-                : variant === 'info'
-                ? 'rgba(59, 130, 246, 0.3)'
-                : 'rgba(147, 51, 234, 0.3)',
-              boxShadow: `0 0 20px ${
-                variant === 'destructive' 
-                  ? 'rgba(239, 68, 68, 0.2)' 
-                  : variant === 'success'
-                  ? 'rgba(34, 197, 94, 0.2)'
-                  : variant === 'warning'
-                  ? 'rgba(234, 179, 8, 0.2)'
-                  : variant === 'info'
-                  ? 'rgba(59, 130, 246, 0.2)'
-                  : 'rgba(147, 51, 234, 0.2)'
-              }`,
-            }}
-            transition={{ duration: 0.2 }}
-          />
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      </div>
     )
   }
 )
