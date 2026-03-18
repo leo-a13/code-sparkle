@@ -1,4 +1,5 @@
 export interface MealDBItem {
+  // item
   id: string;
   name: string;
   description: string;
