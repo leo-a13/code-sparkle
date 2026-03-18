@@ -126,7 +126,7 @@ export const ScrollableTabsList = React.forwardRef<
           } else if (ref) {
             ref.current = el;
           }
-          scrollRef.current = el;
+          (scrollRef as any).current = el;
         }}
         className={cn("scrollable-tabs-list", className)}
         {...props}

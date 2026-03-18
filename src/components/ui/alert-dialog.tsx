@@ -318,7 +318,7 @@ const AlertDialogCancel = React.forwardRef<
 AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName
 
 // Wrapper component with AnimatePresence
-const AlertDialogRoot = ({ children, ...props }: AlertDialogPrimitive.AlertDialogProps) => (
+const AlertDialogRoot = ({ children, ...props }: any) => (
   <AlertDialog {...props}>
     <AnimatePresence mode="wait">
       {children}

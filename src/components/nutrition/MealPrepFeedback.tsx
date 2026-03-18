@@ -132,7 +132,7 @@ const MealPrepFeedback = () => {
 
     // Trigger confetti
     if (confettiCanvasRef.current) {
-      const myConfetti = confetti.create(confettiCanvasRef.current, {
+      const myConfetti = (confetti as any).create(confettiCanvasRef.current, {
         resize: true,
         useWorker: true,
       })

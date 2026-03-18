@@ -244,7 +244,7 @@ const ChartContainer = React.forwardRef<
           }}
           transition={{ duration: 0.3 }}
         />
-      </motion.div>
+        </div>
     </ChartContext.Provider>
   )
 })
