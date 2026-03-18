@@ -9,7 +9,6 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
     allowedHosts: ["qd9mg2-8080.csb.app"],
   },
-
   plugins: [react()].filter(Boolean),
   resolve: {
     alias: {
