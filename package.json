@@ -61,7 +61,6 @@
     "react-router-dom": "6.26.2",
     "recharts": "^2.12.7",
     "rollup": "4.24.0",
-    "sonner": "1.5.0",
     "supabase": "^2.22.12",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
