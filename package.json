@@ -67,6 +67,7 @@
     "supabase": "^2.22.12",
     "tailwind-merge": "2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "tinyglobby": "^0.2.15",
     "uuid": "^11.1.0",
     "vaul": "^0.9.3",
     "vite": "6.3.5",
