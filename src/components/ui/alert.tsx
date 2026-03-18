@@ -141,7 +141,7 @@ const AlertTitle = React.forwardRef<
       "bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text",
       className
     )}
-    {...props}
+    {...(props as any)}
   >
     {children}
   </motion.h5>
