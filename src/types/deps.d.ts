@@ -1,5 +1,11 @@
 // Shims for packages with missing dist folders in corrupted node_modules
 
+declare module "@supabase/supabase-js" {
+  export function createClient(url: string, key: string, options?: any): any;
+  export type SupabaseClient = any;
+}
+
+
 declare module "@radix-ui/react-progress" {
   import * as React from "react";
   
