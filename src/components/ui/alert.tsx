@@ -161,7 +161,7 @@ const AlertDescription = React.forwardRef<
       "text-sm [&_p]:leading-relaxed text-muted-foreground/90",
       className
     )}
-    {...props}
+    {...(props as any)}
   >
     {children}
   </motion.div>

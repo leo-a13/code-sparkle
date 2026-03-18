@@ -1,5 +1,5 @@
 import * as React from "react"
-import { type DialogProps } from "@radix-ui/react-dialog"
+type DialogProps = React.ComponentProps<typeof import("@radix-ui/react-dialog").Root>
 import { Command as CommandPrimitive } from "cmdk"
 import { Search } from "lucide-react"
 
