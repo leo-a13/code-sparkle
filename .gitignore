@@ -1,5 +1,2 @@
-node modules
 dist
-
-build
-.vscode
+node_modules 
